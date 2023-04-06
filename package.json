@@ -1,0 +1,16 @@
+{
+  "name": "electron-vue",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "electron": "24.0.0",
+    "vite": "^4.2.0",
+    "vue": "^3.2.47"
+  }
+}
