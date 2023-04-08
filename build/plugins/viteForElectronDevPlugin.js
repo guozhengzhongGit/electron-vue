@@ -3,7 +3,7 @@ export const viteDevPlugin = () => {
     name: "dev-plugin",
     configureServer(server) {
       require("esbuild").buildSync({
-        entryPoints: ["./src/main/mainEntry.js"],
+        entryPoints: ["./src/electron-main/mainEntry.js"],
         bundle: true,
         platform: "node",
         outfile: "./dist/mainEntry.js",
