@@ -1,5 +1,9 @@
 <script setup>
+import { version } from 'os';
 import { ref } from 'vue'
+const chromeVersion = ref(versions.chrome());
+const nodeVersion = ref(versions.node());
+const electronVersion = ref(versions.electron());
 
 defineProps({
   msg: String,
@@ -10,7 +14,7 @@ const count = ref(0)
 
 <template>
   <h1>{{ msg }}</h1>
-
+<p>app is using Chrome {{ chromeVersion }}, Node {{ nodeVersion }}, Electron {{ electronVersion }}</p>
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
     <p>
