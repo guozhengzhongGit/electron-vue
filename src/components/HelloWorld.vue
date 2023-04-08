@@ -1,5 +1,4 @@
 <script setup>
-import { version } from 'os';
 import { ref } from 'vue'
 const chromeVersion = ref(versions.chrome());
 const nodeVersion = ref(versions.node());
