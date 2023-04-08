@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import resolve from 'vite-plugin-resolve'
 import { viteDevPlugin } from './build/plugins/viteForElectronDevPlugin.js';
+import { viteProPlugin } from './build/plugins/viteForElectronProPlugin.js'
 
 function transform2ESM() {
   // node 模块
@@ -40,6 +41,9 @@ export default defineConfig({
   viteDevPlugin(), resolve(transform2ESM()), vue()
 ],
   build: {
-    target: ['chrome112']
+    target: ['chrome112'],
+    rollupOptions: {
+      plugins: [viteProPlugin()]
+    }
   }
 })
