@@ -21,6 +21,10 @@ export const viteDevPlugin = () => {
           server.close();
           process.exit();
         });
+        server.httpServer.once("close", () => {
+          electronProcess.kill();
+          process.exit();
+        });
       });
     },
   };
