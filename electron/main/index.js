@@ -17,5 +17,6 @@ app.whenReady().then(() => {
   } else {
     CustomScheme.registerScheme();
     mainWindow.loadURL('electron-vue3://index.html');
+    mainWindow.webContents.openDevTools({ mode: 'undocked' });
   }
 });
