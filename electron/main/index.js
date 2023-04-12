@@ -2,7 +2,6 @@ import { app, BrowserWindow } from "electron";
 import path from 'path';
 import { projectRoot } from '../utils';
 import  CustomScheme from './registerScheme';
-console.log(path);
 let mainWindow;
 
 app.whenReady().then(() => {
@@ -16,7 +15,7 @@ app.whenReady().then(() => {
     mainWindow.webContents.openDevTools({ mode: 'undocked' });
   } else {
     CustomScheme.registerScheme();
-    mainWindow.loadURL('electron-vue3://index.html');
+    mainWindow.loadURL(`electron-vue3://index.html`);
     mainWindow.webContents.openDevTools({ mode: 'undocked' });
   }
 });
