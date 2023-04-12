@@ -3,17 +3,18 @@ export const viteDevPlugin = () => {
     name: "dev-plugin",
     configureServer(server) {
       require("esbuild").buildSync({
-        entryPoints: ["./electron/main/index.js"],
+        entryPoints: ["./electron/main/index.js", './electron/preload/index.js'],
         bundle: true,
         platform: "node",
-        outfile: "./dist/main.js",
+        target: ['node18.14.0'],
+        outdir: 'dist/electron',
         external: ["electron"],
       });
       server.httpServer.once("listening", () => {
         let { spawn } = require("child_process");
         let addressInfo = server.httpServer.address();
         let httpAddress = `http://${addressInfo.address}:${addressInfo.port}`;
-        let electronProcess = spawn(require("electron").toString(), ["./dist/main.js", httpAddress], {
+        let electronProcess = spawn(require("electron").toString(), ["./dist/electron/main/index.js", httpAddress], {
           cwd: process.cwd(),
           stdio: "inherit",
         });

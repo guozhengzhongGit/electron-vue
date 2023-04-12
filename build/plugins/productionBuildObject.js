@@ -4,20 +4,21 @@ export default class BuildObject {
   //编译主进程代码
   buildMain() {
     require("esbuild").buildSync({
-      entryPoints: ["./electron/main/index.js"],
+      entryPoints: ["./electron/main/index.js", './electron/preload/index.js'],
       bundle: true,
       minify: true,
       platform: "node",
-      outfile: "./dist/main.js",
+      target: ['node18.14.0'],
+      outdir: 'dist/electron',
       external: ["electron"],
-    })
+    });
   }
   //为生产环境准备package.json
   preparePackageJson() {
     let pkgJsonPath = path.join(process.cwd(), "package.json");
     let localPkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, "utf-8"));
     let electronConfig = localPkgJson.devDependencies.electron.replace("^", "");
-    localPkgJson.main = "main.js";
+    localPkgJson.main = "electron/main/index.js";
     delete localPkgJson.scripts;
     delete localPkgJson.devDependencies;
     localPkgJson.devDependencies = { electron: electronConfig };

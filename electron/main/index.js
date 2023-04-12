@@ -8,7 +8,7 @@ let mainWindow;
 app.whenReady().then(() => {
   mainWindow = new BrowserWindow({
     webPreferences: {
-      preload: path.join(projectRoot, './electron/preload/index.js'),
+      preload: path.join(__dirname, '../preload/index.js'),
     }
   });
   if (process.argv[2]) {
